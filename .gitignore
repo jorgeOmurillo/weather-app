@@ -10,4 +10,6 @@ npm-debug.*
 web-build/
 web-report/
 
+.envrc
+
 WeatherAPIKey.ts

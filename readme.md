@@ -13,7 +13,7 @@ Expo
 ## Install and run on ios
 
 ```
-yarn install
+npm install
 npx expo start
 ```
 
