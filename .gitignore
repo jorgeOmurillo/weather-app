@@ -11,5 +11,5 @@ web-build/
 web-report/
 
 .envrc
-
+.vim/coc-settings.json
 WeatherAPIKey.ts
