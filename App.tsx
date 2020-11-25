@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { NativeRouter, Route } from "react-router-native";
 import * as Location from "expo-location";
+import { decode, encode } from "base-64";
 
+import { firebase } from "./src/firebase/config";
 import Weather from "./components/Weather";
 import Daily from "./components/Daily";
 import { API_KEY } from "./utils/WeatherAPIKey";
+import { Login, Home, Registration } from "./src/components";
+
+const globalAny: any = global;
+
+if (!globalAny.btoa) {
+  globalAny.btoa = encode;
+}
+if (!globalAny.atob) {
+  globalAny.atob = decode;
+}
 
 export default function App() {
   const [isLoading, setLoading] = useState(true);
@@ -12,6 +25,7 @@ export default function App() {
   const [weatherCondition, setWeatherCondition] = useState(null);
   const [days, setDays] = useState([]);
   const [error, setError] = useState("");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -42,23 +56,39 @@ export default function App() {
     setDays(dailyData);
 
     setLoading(false);
+
+    const usersRef = firebase.firestore().collection("users");
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        usersRef
+          .doc(user.uid)
+          .get()
+          .then((document) => {
+            const userData = document.data();
+            setLoading(false);
+            setUser(userData);
+          })
+          .catch((error) => {
+            setLoading(false);
+          });
+      } else {
+        setLoading(false);
+      }
+    });
   };
+  console.log({ user });
 
   return (
-    <View style={styles.container}>
-      {isLoading ? (
-        <Text style={styles.loading}>Fetching the data...</Text>
+    <NativeRouter initialEntries={["/"]}>
+      {user ? (
+        <Route exact path="/" component={Home} />
       ) : (
         <>
-          <Weather weather={weatherCondition} temperature={temperature} />
-          <View style={styles.day}>
-            {days.map((day, index) => (
-              <Daily key={index} day={day} />
-            ))}
-          </View>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/registration" component={Registration} />
         </>
       )}
-    </View>
+    </NativeRouter>
   );
 }
 
