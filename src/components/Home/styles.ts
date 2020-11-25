@@ -1,56 +1,45 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  container: {
+  weatherContainer: {
+    flex: 1,
+    backgroundColor: "#f7b733",
+  },
+  headerContainer: {
     flex: 1,
     alignItems: "center",
-  },
-  formContainer: {
-    flexDirection: "row",
-    height: 80,
-    marginTop: 40,
-    marginBottom: 20,
-    flex: 1,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
     justifyContent: "center",
-    alignItems: "center",
   },
-  input: {
-    height: 48,
-    borderRadius: 5,
-    overflow: "hidden",
-    backgroundColor: "white",
-    paddingLeft: 16,
-    flex: 1,
-    marginRight: 5,
+  tempText: {
+    fontSize: 48,
+    color: "#fff",
+  },
+  bodyContainer: {
+    alignItems: "center",
+    justifyContent: "flex-end",
+    marginBottom: 30,
   },
   button: {
-    height: 47,
-    borderRadius: 5,
     backgroundColor: "#788eec",
-    width: 80,
+    marginLeft: 30,
+    marginRight: 30,
+    marginTop: 20,
+    height: 48,
+    borderRadius: 5,
     alignItems: "center",
     justifyContent: "center",
   },
-  buttonText: {
+  buttonTitle: {
     color: "white",
     fontSize: 16,
+    fontWeight: "bold",
   },
-  listContainer: {
-    marginTop: 20,
-    padding: 20,
+  title: {
+    fontSize: 48,
+    color: "#fff",
   },
-  entityContainer: {
-    marginTop: 16,
-    borderBottomColor: "#cccccc",
-    borderBottomWidth: 1,
-    paddingBottom: 16,
-  },
-  entityText: {
-    fontSize: 20,
-    color: "#333333",
+  subtitle: {
+    fontSize: 24,
+    color: "#fff",
   },
 });

@@ -19,7 +19,6 @@ export default function Login() {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((response) => {
-        console.log("primero");
         const uid = response.user.uid;
         const usersRef = firebase.firestore().collection("users");
         usersRef

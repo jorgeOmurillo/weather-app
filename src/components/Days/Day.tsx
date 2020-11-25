@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import moment from "moment";
 
-import { weatherConditions } from "../utils/WeatherConditions";
+import { weatherConditions } from "../../../utils/WeatherConditions";
 
 interface Props {
   day: {
@@ -31,7 +31,7 @@ interface Props {
   };
 }
 
-const Daily: React.FC<Props> = (props): JSX.Element => {
+const Day: React.FC<Props> = (props): JSX.Element => {
   const { day } = props;
   const temperature = Math.round(day.main.temp);
   const weather = day.weather[0].main;
@@ -86,4 +86,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Daily;
+export default Day;
