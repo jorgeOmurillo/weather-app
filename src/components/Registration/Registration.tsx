@@ -36,7 +36,7 @@ export default function Registration() {
           .doc(uid)
           .set(data)
           .then(() => {
-            history.push("/");
+            history.push("/login");
             /* navigation.navigate("Home", { user: data }); */
           })
           .catch((error) => {

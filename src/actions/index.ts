@@ -1,3 +1,5 @@
+import * as firebase from "./firebase";
+
 import * as openWeatherMap from "./openWeatherMap";
 
-export { openWeatherMap };
+export { firebase, openWeatherMap };

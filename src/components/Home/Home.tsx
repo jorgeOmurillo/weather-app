@@ -1,61 +1,16 @@
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
-import { useHistory } from "react-router-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import styles from "./styles";
+import { Redirect } from "react-router-native";
+import Loading from "../Loading/Loading";
 
 import useGlobal from "../../store";
-import { firebase } from "../../firebase/config";
-
-import { weatherConditions } from "../../../utils/WeatherConditions";
 
 export default function Home() {
-  const history = useHistory();
   const [globalState] = useGlobal();
-  const { temperature, weatherCondition } = globalState;
-  const handleOnPress = () => {
-    history.push("/days");
-  };
-  const onLogoutPress = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(function () {
-        alert("Logged out successfully!");
-        history.push("/login");
-      })
-      .catch(function (error) {
-        alert("Did not log out successfully.");
-      });
-  };
+  const { loading, userData } = globalState;
 
-  return (
-    <View
-      style={[
-        styles.weatherContainer,
-        { backgroundColor: weatherConditions[weatherCondition].color },
-      ]}
-    >
-      <View style={styles.headerContainer}>
-        <MaterialCommunityIcons
-          size={48}
-          name={weatherConditions[weatherCondition].icon}
-          color={"#fff"}
-        />
-        <Text style={styles.tempText}>{temperature}˚C</Text>
-      </View>
-      <View style={styles.bodyContainer}>
-        <Text style={styles.title}>
-          {weatherConditions[weatherCondition].title}
-        </Text>
-        <Text style={styles.subtitle}>
-          {weatherConditions[weatherCondition].subtitle}
-        </Text>
-        <Text onPress={handleOnPress}>5-day forecast</Text>
-        <TouchableOpacity style={styles.button} onPress={() => onLogoutPress()}>
-          <Text style={styles.buttonTitle}>Log Out</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
+  if (loading) {
+    return <Loading />;
+  }
+
+  return <>{userData ? <Redirect to="weather" /> : <Redirect to="login" />}</>;
 }

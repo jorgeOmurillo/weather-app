@@ -3,9 +3,9 @@ import { NativeRouter, Route } from "react-router-native";
 import * as Location from "expo-location";
 import { decode, encode } from "base-64";
 
-import useGlobal from "./src/store";
 import { firebase } from "./src/firebase/config";
-import { Days, Home, Login, Registration } from "./src/components";
+import useGlobal from "./src/store";
+import { Days, Home, Login, Registration, Weather } from "./src/components";
 
 const globalAny: any = global;
 
@@ -18,8 +18,7 @@ if (!globalAny.atob) {
 
 export default function App() {
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState("");
-  const [user, setUser] = useState(null);
+  const [, setUser] = useState(null);
   const [, globalActions] = useGlobal();
 
   useEffect(() => {
@@ -46,31 +45,27 @@ export default function App() {
           .get()
           .then((document) => {
             const userData = document.data();
-            setLoading(false);
             setUser(userData);
+            // @ts-ignore: 2339
+            globalActions.firebase.login(userData, false);
           })
           .catch((error) => {
-            setLoading(false);
+            alert(error);
           });
       } else {
-        setLoading(false);
+        // @ts-ignore: 2339
+        globalActions.firebase.login(userData, false);
       }
     });
   }, []);
 
   return (
-    <NativeRouter initialEntries={["/login"]}>
-      {user ? (
-        <>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/days" component={Days} />
-        </>
-      ) : (
-        <>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/registration" component={Registration} />
-        </>
-      )}
+    <NativeRouter initialEntries={["/"]}>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/registration" component={Registration} />
+      <Route exact path="/weather" component={Weather} />
+      <Route exact path="/days" component={Days} />
     </NativeRouter>
   );
 }

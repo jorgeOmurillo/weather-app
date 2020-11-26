@@ -15,18 +15,18 @@ export default StyleSheet.create({
     color: "#fff",
   },
   bodyContainer: {
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "flex-end",
     marginBottom: 30,
   },
   button: {
-    backgroundColor: "#788eec",
+    backgroundColor: "#aaaaaa",
     marginLeft: 30,
     marginRight: 30,
     marginTop: 20,
     height: 48,
     borderRadius: 5,
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "center",
   },
   buttonTitle: {

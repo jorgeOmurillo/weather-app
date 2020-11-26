@@ -9,6 +9,7 @@ const initialState = {
   days: [],
   temperature: 0,
   loading: true,
+  userData: null,
 };
 
 const useGlobal = useGlobalHook(React, initialState, actions);

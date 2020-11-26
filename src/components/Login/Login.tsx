@@ -31,7 +31,7 @@ export default function Login() {
             }
             const user = firestoreDocument.data();
             /* navigation.navigate("Home", { user }); */
-            history.push("/");
+            history.push("/weather");
           })
           .catch((error) => {
             alert(error);
