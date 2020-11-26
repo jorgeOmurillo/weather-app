@@ -21,6 +21,9 @@
       "infoPlist": {
         "UIBackgroundModes": ["location", "fetch"]
       }
+    },
+    "android": {
+      "versionCode": 1
     }
   }
 }
