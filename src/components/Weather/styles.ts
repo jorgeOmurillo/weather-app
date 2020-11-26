@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
   bodyContainer: {
     // alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     marginBottom: 30,
   },
   button: {
@@ -26,7 +26,7 @@ export default StyleSheet.create({
     marginTop: 20,
     height: 48,
     borderRadius: 5,
-    // alignItems: "center",
+    alignItems: "center",
     justifyContent: "center",
   },
   buttonTitle: {

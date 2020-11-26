@@ -29,12 +29,13 @@ export default function Login() {
               alert("User does not exist anymore.");
               return;
             }
-            const user = firestoreDocument.data();
+            /* const user = firestoreDocument.data(); */
             /* navigation.navigate("Home", { user }); */
             history.push("/weather");
           })
-          .catch((error) => {
-            alert(error);
+          .catch((error: any) => {
+            alert("Error Logging in.");
+            console.error(error);
           });
       })
       .catch((error) => {

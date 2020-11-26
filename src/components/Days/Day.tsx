@@ -1,9 +1,18 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import moment from "moment";
 
 import { weatherConditions } from "../../../utils/WeatherConditions";
+
+const DAYS_OF_THE_WEEK = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 interface Props {
   day: {
@@ -34,15 +43,16 @@ interface Props {
 const Day: React.FC<Props> = (props): JSX.Element => {
   const { day } = props;
   const temperature = Math.round(day.main.temp);
+  // @ts-ignore: 2532
   const weather = day.weather[0].main;
 
-  let newDate = new Date();
+  const newDate = new Date();
   const weekday = day.dt * 1000;
   newDate.setTime(weekday);
 
   return (
     <View style={styles.weatherContainer}>
-      <Text style={styles.tempText}>{moment(newDate).format("dddd")}</Text>
+      <Text style={styles.tempText}>{DAYS_OF_THE_WEEK[newDate.getDay()]}</Text>
       <MaterialCommunityIcons
         size={20}
         name={weatherConditions[weather].icon}

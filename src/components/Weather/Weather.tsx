@@ -45,12 +45,14 @@ export default function Weather() {
         <Text style={styles.tempText}>{temperature}˚C</Text>
       </View>
       <View style={styles.bodyContainer}>
-        <Text style={styles.title}>
-          {weatherConditions[weatherCondition].title}
-        </Text>
-        <Text style={styles.subtitle}>
-          {weatherConditions[weatherCondition].subtitle}
-        </Text>
+        <View style={{ alignItems: "center" }}>
+          <Text style={styles.title}>
+            {weatherConditions[weatherCondition].title}
+          </Text>
+          <Text style={styles.subtitle}>
+            {weatherConditions[weatherCondition].subtitle}
+          </Text>
+        </View>
         <TouchableOpacity style={styles.button} onPress={handleOnPress}>
           <Text style={styles.subtitle}>5-day forecast</Text>
         </TouchableOpacity>

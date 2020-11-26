@@ -54,7 +54,7 @@ export default function App() {
           });
       } else {
         // @ts-ignore: 2339
-        globalActions.firebase.login(userData, false);
+        globalActions.firebase.login(user, false);
       }
     });
   }, []);
