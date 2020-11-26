@@ -3,7 +3,7 @@ import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useHistory } from "react-router-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./styles";
-import { firebase } from "../../firebase/config";
+import { CurrentUser } from "../../../models";
 
 export default function Registration() {
   const history = useHistory();
@@ -21,31 +21,8 @@ export default function Registration() {
       alert("Passwords don't match.");
       return;
     }
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-        const uid = response.user.uid;
-        const data = {
-          id: uid,
-          email,
-          fullName,
-        };
-        const usersRef = firebase.firestore().collection("users");
-        usersRef
-          .doc(uid)
-          .set(data)
-          .then(() => {
-            history.push("/login");
-            /* navigation.navigate("Home", { user: data }); */
-          })
-          .catch((error) => {
-            alert(error);
-          });
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    CurrentUser.register(fullName, email, password);
+    history.push("/login");
   };
 
   return (

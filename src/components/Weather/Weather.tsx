@@ -5,7 +5,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
 import useGlobal from "../../store";
-import { firebase } from "../../firebase/config";
 
 import { weatherConditions } from "../../../utils/WeatherConditions";
 
@@ -17,16 +16,7 @@ export default function Weather() {
     history.push("/days");
   };
   const onLogoutPress = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        alert("Logged out successfully!");
-        history.push("/login");
-      })
-      .catch((error) => {
-        alert("Did not log out successfully.");
-      });
+    history.push("/login");
   };
 
   return (

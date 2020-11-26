@@ -3,7 +3,7 @@ import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useHistory } from "react-router-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./styles";
-import { firebase } from "../../firebase/config";
+import { CurrentUser } from "../../../models";
 
 export default function Login() {
   const history = useHistory();
@@ -15,32 +15,8 @@ export default function Login() {
   };
 
   const onLoginPress = () => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        const uid = response.user.uid;
-        const usersRef = firebase.firestore().collection("users");
-        usersRef
-          .doc(uid)
-          .get()
-          .then((firestoreDocument) => {
-            if (!firestoreDocument.exists) {
-              alert("User does not exist anymore.");
-              return;
-            }
-            /* const user = firestoreDocument.data(); */
-            /* navigation.navigate("Home", { user }); */
-            history.push("/weather");
-          })
-          .catch((error: any) => {
-            alert("Error Logging in.");
-            console.error(error);
-          });
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    CurrentUser.login(email, password);
+    history.push("/weather");
   };
 
   return (
