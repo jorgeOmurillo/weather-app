@@ -3,7 +3,8 @@ import { NativeRouter, Route } from "react-router-native";
 import { decode, encode } from "base-64";
 
 import { CurrentUser } from "./models";
-import { Days, Home, Login, Registration, Weather } from "./src/components";
+import { Home, Login, Registration } from "./src/components";
+import restrictedRoutes from "./src/restrictedRoutes";
 
 const globalAny: any = global;
 
@@ -22,8 +23,7 @@ export default function App() {
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/registration" component={Registration} />
-      <Route exact path="/weather" component={Weather} />
-      <Route exact path="/days" component={Days} />
+      {restrictedRoutes()}
     </NativeRouter>
   );
 }
