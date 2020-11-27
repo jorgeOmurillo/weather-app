@@ -4,11 +4,13 @@ import { useHistory } from "react-router-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./styles";
 import { CurrentUser } from "../../../models";
+import useGlobal from "../../store/";
 
 export default function Login() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [, globalActions] = useGlobal();
 
   const onFooterLinkPress = () => {
     history.push("/registration");
@@ -18,6 +20,8 @@ export default function Login() {
     try {
       const res = await CurrentUser.login(email, password);
       if (res) {
+        // @ts-ignore: 2339
+        globalActions.firebase.login(res, false);
         history.push("/weather");
       }
     } catch (e) {
