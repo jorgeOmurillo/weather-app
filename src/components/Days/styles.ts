@@ -5,9 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerContainer: {
-    paddingTop: 20,
-    paddingBottom: 0,
-    marginTop: 0,
+    paddingTop: 60,
     alignItems: "flex-start",
     backgroundColor: "#f7b733",
   },
@@ -19,13 +17,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   button: {
+    paddingTop: 100,
+    alignItems: "flex-start",
     backgroundColor: "#f7b733",
-    marginLeft: 30,
-    marginRight: 30,
-    marginTop: 20,
-    height: 48,
-    borderRadius: 5,
-    alignItems: "center",
+    paddingLeft: 20,
     justifyContent: "center",
   },
   dayContainer: {
@@ -35,7 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f7b733",
   },
   dayText: {
-    fontSize: 30,
+    fontSize: 25,
     color: "#fff",
   },
   tempText: {

@@ -20,26 +20,20 @@ const Days = (): JSX.Element => {
 
   return (
     <View style={styles.weatherContainer}>
-      <View
+      <TouchableOpacity
+        onPress={handleOnPress}
         style={[
-          styles.headerContainer,
+          styles.button,
           { backgroundColor: weatherConditions[weatherCondition].color },
         ]}
       >
-        <TouchableOpacity
+        <MaterialCommunityIcons
+          size={40}
+          name="keyboard-backspace"
+          color={"#fff"}
           onPress={handleOnPress}
-          style={[
-            styles.button,
-            { backgroundColor: weatherConditions[weatherCondition].color },
-          ]}
-        >
-          <MaterialCommunityIcons
-            size={40}
-            name="keyboard-backspace"
-            color={"#fff"}
-          />
-        </TouchableOpacity>
-      </View>
+        />
+      </TouchableOpacity>
       <View
         style={[
           styles.bodyContainer,
