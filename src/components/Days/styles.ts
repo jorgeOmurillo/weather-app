@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   button: {
-    paddingTop: 100,
+    paddingTop: 60,
     alignItems: "flex-start",
     backgroundColor: "#f7b733",
     paddingLeft: 20,

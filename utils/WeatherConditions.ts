@@ -20,31 +20,31 @@ export const weatherConditions = {
   Clouds: {
     color: "#1F1C2C",
     title: "Clouds",
-    subtitle: "Cloudy skies are still beautiful",
+    subtitle: "Cloudy skies are still beautiful.",
     icon: "weather-cloudy",
   },
   Snow: {
     color: "#00d2ff",
     title: "Snow",
-    subtitle: "This will be my first time to see snow in Canada",
+    subtitle: "Can't wait to see snow!",
     icon: "weather-snowy",
   },
   Drizzle: {
     color: "#076585",
     title: "Drizzle",
-    subtitle: "It drizzels a lot lately",
+    subtitle: "It drizzels a lot lately.",
     icon: "weather-hail",
   },
   Haze: {
     color: "#66A6FF",
     title: "Haze",
-    subtitle: "The purple kind",
+    subtitle: "The purple kind.",
     icon: "weather-hail",
   },
   Mist: {
     color: "#3CD3AD",
     title: "Mist",
-    subtitle: "Can be dangerous if not careful",
+    subtitle: "Can be dangerous if not careful.",
     icon: "weather-fog",
   },
 };
