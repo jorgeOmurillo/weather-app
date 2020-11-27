@@ -12,5 +12,5 @@ export default function Home() {
     return <Loading />;
   }
 
-  return <>{userData ? <Redirect to="weather" /> : <Redirect to="login" />}</>;
+  return <>{userData ? <Redirect to="/weather" /> : <Redirect to="login" />}</>;
 }

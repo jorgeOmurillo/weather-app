@@ -11,7 +11,7 @@ export const fetchWeather = async (store: any, lat: any, lon: any) => {
     reading.dt_txt.includes("18:00:00")
   );
 
-  store.setState({ days, temperature, weatherCondition });
+  store.setState({ loading: false, days, temperature, weatherCondition });
 
   // setLoading(false);
 };

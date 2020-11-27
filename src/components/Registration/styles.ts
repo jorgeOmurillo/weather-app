@@ -8,10 +8,10 @@ export default StyleSheet.create({
   title: {},
   logo: {
     flex: 1,
-    height: 120,
-    width: 90,
-    alignSelf: "center",
-    margin: 30,
+    // height: 120,
+    // width: 90,
+    // alignSelf: "center",
+    // margin: 30,
   },
   input: {
     height: 48,
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     paddingLeft: 16,
   },
   button: {
-    backgroundColor: "#788eec",
+    backgroundColor: "#aaaaaa",
     marginLeft: 30,
     marginRight: 30,
     marginTop: 20,
@@ -49,7 +49,7 @@ export default StyleSheet.create({
     color: "#2e2e2d",
   },
   footerLink: {
-    color: "#788eec",
+    color: "#aaaaaa",
     fontWeight: "bold",
     fontSize: 16,
   },

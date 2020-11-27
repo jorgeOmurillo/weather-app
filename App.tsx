@@ -2,7 +2,7 @@ import React from "react";
 import { NativeRouter, Route } from "react-router-native";
 import { decode, encode } from "base-64";
 
-import { CurrentUser, useLocation } from "./models";
+import { CurrentUser } from "./models";
 import { Days, Home, Login, Registration, Weather } from "./src/components";
 
 const globalAny: any = global;
@@ -15,7 +15,6 @@ if (!globalAny.atob) {
 }
 
 export default function App() {
-  useLocation();
   CurrentUser.get();
 
   return (

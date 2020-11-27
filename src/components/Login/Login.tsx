@@ -14,9 +14,15 @@ export default function Login() {
     history.push("/registration");
   };
 
-  const onLoginPress = () => {
-    CurrentUser.login(email, password);
-    history.push("/weather");
+  const onLoginPress = async () => {
+    try {
+      const res = await CurrentUser.login(email, password);
+      if (res) {
+        history.push("/weather");
+      }
+    } catch (e) {
+      alert(e);
+    }
   };
 
   return (
