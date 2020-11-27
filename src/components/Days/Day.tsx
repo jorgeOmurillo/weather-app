@@ -31,10 +31,11 @@ interface Props {
       speed: number;
     };
   };
+  weatherCondition: string;
 }
 
 const Day: React.FC<Props> = (props): JSX.Element => {
-  const { day } = props;
+  const { day, weatherCondition } = props;
   const temperature = Math.round(day.main.temp);
   // @ts-ignore: 2532
   const weather = day.weather[0].main;
@@ -44,7 +45,12 @@ const Day: React.FC<Props> = (props): JSX.Element => {
   newDate.setTime(weekday);
 
   return (
-    <View style={styles.dayContainer}>
+    <View
+      style={[
+        styles.dayContainer,
+        { backgroundColor: weatherConditions[weatherCondition].color },
+      ]}
+    >
       <Text style={styles.dayText}>{DAYS_OF_THE_WEEK[newDate.getDay()]}</Text>
       <MaterialCommunityIcons
         size={40}

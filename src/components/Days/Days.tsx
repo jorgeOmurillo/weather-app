@@ -47,7 +47,7 @@ const Days = (): JSX.Element => {
         ]}
       >
         {days.map((day) => (
-          <Day day={day} key={day.dt_txt} />
+          <Day day={day} weatherCondition={weatherCondition} key={day.dt_txt} />
         ))}
       </View>
     </View>

@@ -8,32 +8,31 @@ export const weatherConditions = {
   Clear: {
     color: "#f7b733",
     title: "Sunny",
-    subtitle: "Nothing like sunny weather :)",
+    subtitle: "Sunny weather is the best!",
     icon: "weather-sunny",
   },
   Thunderstorm: {
     color: "#616161",
     title: "Storm",
-    subtitle: "Not the X-Men Storm",
+    subtitle: "Thunder and lightning incoming.",
     icon: "weather-lightning",
   },
   Clouds: {
     color: "#1F1C2C",
     title: "Clouds",
-    subtitle: "They're always nice as long as rain doesn't follow :(",
+    subtitle: "Cloudy skies are still beautiful",
     icon: "weather-cloudy",
   },
-
   Snow: {
     color: "#00d2ff",
     title: "Snow",
-    subtitle: "People sign that popular song",
+    subtitle: "This will be my first time to see snow in Canada",
     icon: "weather-snowy",
   },
   Drizzle: {
     color: "#076585",
     title: "Drizzle",
-    subtitle: "It's almost as bad as rain",
+    subtitle: "It drizzels a lot lately",
     icon: "weather-hail",
   },
   Haze: {
