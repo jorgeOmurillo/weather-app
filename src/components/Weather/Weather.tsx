@@ -4,6 +4,7 @@ import { useHistory } from "react-router-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
+import { CurrentUser } from "../../../models";
 import useGlobal from "../../store";
 
 import { weatherConditions } from "../../../utils/WeatherConditions";
@@ -16,6 +17,7 @@ export default function Weather() {
     history.push("/days");
   };
   const onLogoutPress = () => {
+    CurrentUser.logout();
     history.push("/login");
   };
 
