@@ -1,47 +1,57 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { TouchableOpacity, View } from "react-native";
+import { useHistory } from "react-router-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import useGlobal from "../../store";
 
 import Day from "./Day";
+import styles from "./styles";
+import { weatherConditions } from "../../../utils/WeatherConditions";
 
 const Days = (): JSX.Element => {
   const [globalState] = useGlobal();
-  const { days } = globalState;
+  const { days, weatherCondition } = globalState;
+  const history = useHistory();
+
+  const handleOnPress = () => {
+    history.goBack();
+  };
 
   return (
     <View style={styles.weatherContainer}>
-      {days.map((day) => (
-        <Day day={day} key={day.dt_txt} />
-      ))}
+      <View
+        style={[
+          styles.headerContainer,
+          { backgroundColor: weatherConditions[weatherCondition].color },
+        ]}
+      >
+        <TouchableOpacity
+          onPress={handleOnPress}
+          style={[
+            styles.button,
+            { backgroundColor: weatherConditions[weatherCondition].color },
+          ]}
+        >
+          <MaterialCommunityIcons
+            size={40}
+            name="keyboard-backspace"
+            color={"#fff"}
+          />
+        </TouchableOpacity>
+      </View>
+      <View
+        style={[
+          styles.bodyContainer,
+          { backgroundColor: weatherConditions[weatherCondition].color },
+        ]}
+      >
+        {days.map((day) => (
+          <Day day={day} key={day.dt_txt} />
+        ))}
+      </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  weatherContainer: {
-    flex: 1,
-  },
-  headerContainer: {
-    flex: 1,
-    alignItems: "center",
-  },
-  tempText: {
-    fontSize: 15,
-    color: "#fff",
-  },
-  bodyContainer: {
-    paddingLeft: 25,
-    marginBottom: 20,
-  },
-  title: {
-    fontSize: 15,
-    color: "#fff",
-  },
-  subtitle: {
-    fontSize: 5,
-    color: "#fff",
-  },
-});
 
 export default Days;

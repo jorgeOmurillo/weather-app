@@ -1,18 +1,11 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import styles from "./styles";
 
 import { weatherConditions } from "../../../utils/WeatherConditions";
 
-const DAYS_OF_THE_WEEK = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+const DAYS_OF_THE_WEEK = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 interface Props {
   day: {
@@ -51,10 +44,10 @@ const Day: React.FC<Props> = (props): JSX.Element => {
   newDate.setTime(weekday);
 
   return (
-    <View style={styles.weatherContainer}>
-      <Text style={styles.tempText}>{DAYS_OF_THE_WEEK[newDate.getDay()]}</Text>
+    <View style={styles.dayContainer}>
+      <Text style={styles.dayText}>{DAYS_OF_THE_WEEK[newDate.getDay()]}</Text>
       <MaterialCommunityIcons
-        size={20}
+        size={40}
         name={weatherConditions[weather].icon}
         color={"#fff"}
       />
@@ -65,35 +58,5 @@ const Day: React.FC<Props> = (props): JSX.Element => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  weatherContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    backgroundColor: "#f7b733",
-    alignItems: "center",
-  },
-  headerContainer: {
-    flex: 1,
-    alignItems: "center",
-  },
-  tempText: {
-    fontSize: 15,
-    color: "#fff",
-  },
-  bodyContainer: {
-    paddingLeft: 25,
-    marginBottom: 20,
-  },
-  title: {
-    fontSize: 15,
-    color: "#fff",
-  },
-  subtitle: {
-    fontSize: 5,
-    color: "#fff",
-  },
-});
 
 export default Day;
