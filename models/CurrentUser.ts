@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import * as Location from "expo-location";
 
 import { firebase } from "../src/firebase/config";
@@ -7,38 +7,39 @@ import useGlobal from "../src/store";
 export const CurrentUser = {
   get() {
     const [, globalActions] = useGlobal();
-    const [, setUser] = useState(null);
-    const [, setError] = useState(null);
 
     useEffect(() => {
       const usersRef = firebase.firestore().collection("users");
-      firebase.auth().onAuthStateChanged((user) => {
+      return firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           usersRef
             .doc(user.uid)
             .get()
             .then((document) => {
               const userData = document.data();
-              setUser(userData);
-              // @ts-ignore: 2339
-              globalActions.firebase.login(userData);
 
-              (async () => {
+              (async function getLocation() {
                 let { status } = await Location.requestPermissionsAsync();
                 if (status !== "granted") {
-                  setError("Permission to access location was denied");
+                  console.error("Permission to access location was denied");
+                } else {
+                  try {
+                    let location = await Location.getCurrentPositionAsync({
+                      accuracy: Location.Accuracy.High,
+                    });
+
+                    // @ts-ignore: 2339
+                    globalActions.openWeatherMap.fetchWeather(
+                      location.coords.latitude,
+                      location.coords.longitude
+                    );
+                  } catch (e) {
+                    console.error(e);
+                  }
                 }
-
-                let location = await Location.getCurrentPositionAsync({
-                  accuracy: Location.Accuracy.High,
-                });
-
-                // @ts-ignore: 2339
-                globalActions.openWeatherMap.fetchWeather(
-                  location.coords.latitude,
-                  location.coords.longitude
-                );
               })();
+              // @ts-ignore: 2339
+              globalActions.firebase.login(userData);
             })
             .catch((error) => {
               alert(error);

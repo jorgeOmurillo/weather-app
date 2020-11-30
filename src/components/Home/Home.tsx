@@ -12,5 +12,9 @@ export default function Home() {
     return <Loading />;
   }
 
-  return <>{userData ? <Redirect to="/weather" /> : <Redirect to="login" />}</>;
+  if (!userData) {
+    return <Redirect to="/login" />;
+  }
+
+  return <Redirect to="/weather" />;
 }
