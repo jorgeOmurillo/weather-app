@@ -1,18 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { useHistory } from "react-router-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import styles from "./styles";
+import * as Location from "expo-location";
 
-import { CurrentUser } from "../../../models";
-import useGlobal from "../../store";
+import styles from "./styles";
+import { CurrentUser, useOpenWeather } from "../../../models";
+import Loading from "../Loading/Loading";
 
 import { weatherConditions } from "../../../utils/WeatherConditions";
 
 export default function Weather() {
   const history = useHistory();
-  const [globalState] = useGlobal();
-  const { temperature, weatherCondition } = globalState;
+  const [lat, setLat] = useState(null);
+  const [lon, setLon] = useState(null);
+  const { data, error, loading } = useOpenWeather(lat, lon);
+
+  useEffect(() => {
+    async function getLocation() {
+      let { status } = await Location.requestPermissionsAsync();
+      if (status !== "granted") {
+        console.error("Permission to access location was denied");
+      } else {
+        try {
+          let location = await Location.getCurrentPositionAsync({
+            accuracy: Location.Accuracy.High,
+          });
+          setLat(location.coords.latitude);
+          setLon(location.coords.longitude);
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }
+    getLocation();
+  });
+
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    throw error;
+  }
+  const temperature = Math.round(data.weatherRes.list[0].main.temp);
+  const weatherCondition = data.weatherRes.list[0].weather[0].main;
+
   const handleOnPress = () => {
     history.push("/days");
   };

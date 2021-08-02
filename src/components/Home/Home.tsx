@@ -1,20 +1,30 @@
 import React from "react";
 import { Redirect } from "react-router-native";
+import Async from "react-async";
 import Loading from "../Loading/Loading";
 
-import useGlobal from "../../store";
+import { CurrentUser } from "../../../models";
 
 export default function Home() {
-  const [globalState] = useGlobal();
-  const { loading, userData } = globalState;
+  return (
+    <Async promiseFn={CurrentUser.get}>
+      <Async.Pending>
+        <Loading />
+      </Async.Pending>
 
-  if (loading) {
-    return <Loading />;
-  }
-
-  if (!userData) {
-    return <Redirect to="/login" />;
-  }
-
-  return <Redirect to="/weather" />;
+      <Async.Fulfilled>
+        {(user: any) => {
+          if (!user) {
+            return <Redirect to="/login" />;
+          }
+          return <Redirect to="/weather" />;
+        }}
+      </Async.Fulfilled>
+      <Async.Rejected>
+        {(e) => {
+          console.log("RECHAZADO", e);
+        }}
+      </Async.Rejected>
+    </Async>
+  );
 }
