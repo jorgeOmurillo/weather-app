@@ -1,55 +1,14 @@
-import { useEffect } from "react";
-import * as Location from "expo-location";
-
 import { firebase } from "../src/firebase/config";
-import useGlobal from "../src/store";
 
 export const CurrentUser = {
-  get() {
-    const [, globalActions] = useGlobal();
-
-    useEffect(() => {
-      const usersRef = firebase.firestore().collection("users");
-      return firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          usersRef
-            .doc(user.uid)
-            .get()
-            .then((document) => {
-              const userData = document.data();
-
-              (async function getLocation() {
-                let { status } = await Location.requestPermissionsAsync();
-                if (status !== "granted") {
-                  console.error("Permission to access location was denied");
-                } else {
-                  try {
-                    let location = await Location.getCurrentPositionAsync({
-                      accuracy: Location.Accuracy.High,
-                    });
-
-                    // @ts-ignore: 2339
-                    globalActions.openWeatherMap.fetchWeather(
-                      location.coords.latitude,
-                      location.coords.longitude
-                    );
-                  } catch (e) {
-                    console.error(e);
-                  }
-                }
-              })();
-              // @ts-ignore: 2339
-              globalActions.firebase.login(userData);
-            })
-            .catch((error) => {
-              alert(error);
-            });
-        } else {
-          // @ts-ignore: 2339
-          globalActions.firebase.login(null, false);
-        }
-      });
-    }, []);
+  async get() {
+    return new Promise((resolve, reject) => {
+      try {
+        firebase.auth().onAuthStateChanged((user: any) => resolve(user));
+      } catch (e) {
+        reject(e);
+      }
+    });
   },
   async login(email: string, password: string) {
     return firebase.auth().signInWithEmailAndPassword(email, password);
@@ -93,3 +52,5 @@ export const CurrentUser = {
       });
   },
 };
+
+export default CurrentUser;

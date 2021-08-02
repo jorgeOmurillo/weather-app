@@ -2,7 +2,6 @@ import React from "react";
 import { NativeRouter, Route } from "react-router-native";
 import { decode, encode } from "base-64";
 
-import { CurrentUser } from "./models";
 import { Home, Login, Registration } from "./src/components";
 import restrictedRoutes from "./src/restrictedRoutes";
 
@@ -16,8 +15,6 @@ if (!globalAny.atob) {
 }
 
 export default function App() {
-  CurrentUser.get();
-
   return (
     <NativeRouter initialEntries={["/"]}>
       <Route exact path="/" component={Home} />
