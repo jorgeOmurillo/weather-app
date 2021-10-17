@@ -1,5 +1,4 @@
 import React from "react";
-import {Text, View} from 'react-native'
 import { Redirect } from "react-router-native";
 import Async from "react-async";
 import Loading from "../Loading/Loading";
