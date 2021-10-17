@@ -28,18 +28,19 @@ export default function Registration() {
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView
-        style={{ flex: 1, width: "100%" }}
-        keyboardShouldPersistTaps="always"
-      >
+        style={{flex: 1, width: '100%'}}
+        enableOnAndroid={true}
+        keyboardShouldPersistTaps={'handled'}
+        enableResetScrollToCoords={false}>
         <Image
           style={styles.logo}
-          source={require("../../../assets/icon.png")}
+          source={require('../../../assets/icon.png')}
         />
         <TextInput
           style={styles.input}
           placeholder="Full Name"
           placeholderTextColor="#aaaaaa"
-          onChangeText={(text) => setFullName(text)}
+          onChangeText={text => setFullName(text)}
           value={fullName}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
@@ -48,7 +49,7 @@ export default function Registration() {
           style={styles.input}
           placeholder="E-mail"
           placeholderTextColor="#aaaaaa"
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={text => setEmail(text)}
           value={email}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
@@ -56,9 +57,9 @@ export default function Registration() {
         <TextInput
           style={styles.input}
           placeholderTextColor="#aaaaaa"
-          secureTextEntry
+          //secureTextEntry
           placeholder="Password"
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={text => setPassword(text)}
           value={password}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
@@ -66,22 +67,21 @@ export default function Registration() {
         <TextInput
           style={styles.input}
           placeholderTextColor="#aaaaaa"
-          secureTextEntry
+          //secureTextEntry
           placeholder="Confirm Password"
-          onChangeText={(text) => setConfirmPassword(text)}
+          onChangeText={text => setConfirmPassword(text)}
           value={confirmPassword}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={() => onRegisterPress()}
-        >
+          onPress={() => onRegisterPress()}>
           <Text style={styles.buttonTitle}>Create account</Text>
         </TouchableOpacity>
         <View style={styles.footerView}>
           <Text style={styles.footerText}>
-            Already got an account?{" "}
+            Already got an account?{' '}
             <Text onPress={onFooterLinkPress} style={styles.footerLink}>
               Log in
             </Text>

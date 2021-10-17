@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+// import { MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
 import { weatherConditions } from "../../../utils/WeatherConditions";
@@ -52,11 +52,13 @@ const Day: React.FC<Props> = (props): JSX.Element => {
       ]}
     >
       <Text style={styles.dayText}>{DAYS_OF_THE_WEEK[newDate.getDay()]}</Text>
+      {/*
       <MaterialCommunityIcons
         size={40}
         name={weatherConditions[weather].icon}
         color={"#fff"}
       />
+      */}
       <View>
         <Text style={styles.tempText}>{temperature}˚C</Text>
         <Text style={styles.title}>{weatherConditions[weather].title}</Text>

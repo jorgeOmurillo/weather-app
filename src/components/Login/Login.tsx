@@ -30,7 +30,9 @@ export default function Login() {
     <View style={styles.container}>
       <KeyboardAwareScrollView
         style={{ flex: 1, width: "100%" }}
-        keyboardShouldPersistTaps="always"
+        enableOnAndroid={true}
+  keyboardShouldPersistTaps={"handled"}
+  enableResetScrollToCoords={false}
       >
         <Image
           style={styles.logo}
