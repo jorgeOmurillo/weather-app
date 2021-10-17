@@ -1,9 +1,9 @@
-import React from "react";
-import { Redirect } from "react-router-native";
-import Async from "react-async";
-import Loading from "../Loading/Loading";
+import React from 'react';
+import {Redirect} from 'react-router-native';
+import Async from 'react-async';
+import Loading from '../Loading/Loading';
 
-import { CurrentUser } from "../../../models";
+import {CurrentUser} from '../../../models';
 
 export default function Home() {
   return (
@@ -22,7 +22,7 @@ export default function Home() {
       </Async.Fulfilled>
       <Async.Rejected>
         {(e) => {
-          console.log("RECHAZADO", e);
+          console.log('RECHAZADO', e);
         }}
       </Async.Rejected>
     </Async>

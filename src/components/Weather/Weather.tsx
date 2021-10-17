@@ -1,21 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { Alert, Linking, Platform, Text, TouchableOpacity, View } from "react-native";
-import { useHistory } from "react-router-native";
+import React, {useEffect, useState} from 'react';
+import {
+  Alert,
+  Linking,
+  Platform,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {useHistory} from 'react-router-native';
 //import { MaterialCommunityIcons } from "@expo/vector-icons";
 //import * as Location from "expo-location";
 import Geolocation from 'react-native-geolocation-service';
 
-import styles from "./styles";
-import { CurrentUser, useOpenWeather } from "../../../models";
-import Loading from "../Loading/Loading";
-import withGeolocation from '../withGeolocation'
+import styles from './styles';
+import {CurrentUser, useOpenWeather} from '../../../models';
+import Loading from '../Loading/Loading';
+import withGeolocation from '../withGeolocation';
 
-import { weatherConditions } from "../../../utils/WeatherConditions";
+import {weatherConditions} from '../../../utils/WeatherConditions';
 
 function Weather(props) {
   const history = useHistory();
   const {latitude, longitude} = props.position.coords || {};
-  const { data, error, loading } = useOpenWeather(latitude, longitude);
+  const {data, error, loading} = useOpenWeather(latitude, longitude);
 
   if (loading) {
     return <Loading />;
@@ -27,18 +34,18 @@ function Weather(props) {
   const weatherCondition = data.weatherRes.list[0].weather[0].main;
 
   const handleOnPress = () => {
-    history.push("/days");
+    history.push('/days');
   };
   const onLogoutPress = () => {
     CurrentUser.logout();
-    history.push("/login");
+    history.push('/login');
   };
 
   return (
     <View
       style={[
         styles.weatherContainer,
-        { backgroundColor: weatherConditions[weatherCondition].color },
+        {backgroundColor: weatherConditions[weatherCondition].color},
       ]}
     >
       <View style={styles.headerContainer}>
@@ -50,7 +57,7 @@ function Weather(props) {
         <Text style={styles.tempText}>{temperature}˚C</Text>
       </View>
       <View style={styles.bodyContainer}>
-        <View style={{ alignItems: "center" }}>
+        <View style={{alignItems: 'center'}}>
           <Text style={styles.title}>
             {weatherConditions[weatherCondition].title}
           </Text>

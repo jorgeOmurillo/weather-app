@@ -56,10 +56,10 @@ function withGeolocation(WrappedComponent: any) {
         }
 
         Geolocation.getCurrentPosition(
-          position => {
+          (position) => {
             setPosition(position);
           },
-          error => {
+          (error) => {
             // See error code charts below.
             console.log(error.code, error.message);
           },

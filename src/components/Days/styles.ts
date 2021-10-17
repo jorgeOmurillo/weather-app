@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   weatherContainer: {
@@ -6,40 +6,40 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     paddingTop: 60,
-    alignItems: "flex-start",
-    backgroundColor: "#f7b733",
+    alignItems: 'flex-start',
+    backgroundColor: '#f7b733',
   },
   bodyContainer: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingBottom: 200,
-    justifyContent: "space-evenly",
+    justifyContent: 'space-evenly',
   },
   button: {
     paddingTop: 60,
-    alignItems: "flex-start",
-    backgroundColor: "#f7b733",
+    alignItems: 'flex-start',
+    backgroundColor: '#f7b733',
     paddingLeft: 20,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   dayContainer: {
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    backgroundColor: "#f7b733",
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    backgroundColor: '#f7b733',
   },
   dayText: {
     fontSize: 25,
-    color: "#fff",
+    color: '#fff',
   },
   tempText: {
     fontSize: 20,
-    color: "#fff",
+    color: '#fff',
   },
   title: {
     fontSize: 15,
-    color: "#fff",
+    color: '#fff',
   },
 });
 export default styles;

@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useHistory } from "react-router-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import styles from "./styles";
-import { CurrentUser } from "../../../models";
+import React, {useState} from 'react';
+import {Image, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {useHistory} from 'react-router-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import styles from './styles';
+import {CurrentUser} from '../../../models';
 
 export default function Registration() {
   const history = useHistory();
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const onFooterLinkPress = () => {
-    history.push("/login");
+    history.push('/login');
   };
 
   const onRegisterPress = () => {
@@ -22,7 +22,7 @@ export default function Registration() {
       return;
     }
     CurrentUser.register(fullName, email, password);
-    history.push("/login");
+    history.push('/login');
   };
 
   return (
@@ -31,7 +31,8 @@ export default function Registration() {
         style={{flex: 1, width: '100%'}}
         enableOnAndroid={true}
         keyboardShouldPersistTaps={'handled'}
-        enableResetScrollToCoords={false}>
+        enableResetScrollToCoords={false}
+      >
         <Image
           style={styles.logo}
           source={require('../../../assets/icon.png')}
@@ -40,7 +41,7 @@ export default function Registration() {
           style={styles.input}
           placeholder="Full Name"
           placeholderTextColor="#aaaaaa"
-          onChangeText={text => setFullName(text)}
+          onChangeText={(text) => setFullName(text)}
           value={fullName}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
@@ -49,7 +50,7 @@ export default function Registration() {
           style={styles.input}
           placeholder="E-mail"
           placeholderTextColor="#aaaaaa"
-          onChangeText={text => setEmail(text)}
+          onChangeText={(text) => setEmail(text)}
           value={email}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
@@ -59,7 +60,7 @@ export default function Registration() {
           placeholderTextColor="#aaaaaa"
           //secureTextEntry
           placeholder="Password"
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           value={password}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
@@ -69,14 +70,15 @@ export default function Registration() {
           placeholderTextColor="#aaaaaa"
           //secureTextEntry
           placeholder="Confirm Password"
-          onChangeText={text => setConfirmPassword(text)}
+          onChangeText={(text) => setConfirmPassword(text)}
           value={confirmPassword}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={() => onRegisterPress()}>
+          onPress={() => onRegisterPress()}
+        >
           <Text style={styles.buttonTitle}>Create account</Text>
         </TouchableOpacity>
         <View style={styles.footerView}>
