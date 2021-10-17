@@ -1,40 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Alert, Linking, Platform, Text, TouchableOpacity, View } from "react-native";
 import { useHistory } from "react-router-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import * as Location from "expo-location";
+//import { MaterialCommunityIcons } from "@expo/vector-icons";
+//import * as Location from "expo-location";
+import Geolocation from 'react-native-geolocation-service';
 
 import styles from "./styles";
 import { CurrentUser, useOpenWeather } from "../../../models";
 import Loading from "../Loading/Loading";
+import withGeolocation from '../withGeolocation'
 
 import { weatherConditions } from "../../../utils/WeatherConditions";
 
-export default function Weather() {
+function Weather(props) {
   const history = useHistory();
-  const [lat, setLat] = useState(null);
-  const [lon, setLon] = useState(null);
-  const { data, error, loading } = useOpenWeather(lat, lon);
-
-  useEffect(() => {
-    async function getLocation() {
-      let { status } = await Location.requestPermissionsAsync();
-      if (status !== "granted") {
-        console.error("Permission to access location was denied");
-      } else {
-        try {
-          let location = await Location.getCurrentPositionAsync({
-            accuracy: Location.Accuracy.High,
-          });
-          setLat(location.coords.latitude);
-          setLon(location.coords.longitude);
-        } catch (e) {
-          console.error(e);
-        }
-      }
-    }
-    getLocation();
-  });
+  const {latitude, longitude} = props.position.coords || {};
+  const { data, error, loading } = useOpenWeather(latitude, longitude);
 
   if (loading) {
     return <Loading />;
@@ -61,11 +42,11 @@ export default function Weather() {
       ]}
     >
       <View style={styles.headerContainer}>
-        <MaterialCommunityIcons
+        {/*<MaterialCommunityIcons
           size={48}
           name={weatherConditions[weatherCondition].icon}
           color={"#fff"}
-        />
+        />*/}
         <Text style={styles.tempText}>{temperature}˚C</Text>
       </View>
       <View style={styles.bodyContainer}>
@@ -87,3 +68,5 @@ export default function Weather() {
     </View>
   );
 }
+
+export default withGeolocation(Weather);
