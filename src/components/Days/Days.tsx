@@ -1,18 +1,18 @@
-import React from "react";
-import { TouchableOpacity, View } from "react-native";
-import { useHistory } from "react-router-native";
+import React from 'react';
+import {TouchableOpacity, View} from 'react-native';
+import {useHistory} from 'react-router-native';
 
-import { useOpenWeather } from "../../../models";
-import Loading from "../Loading/Loading";
-import Day from "./Day";
-import styles from "./styles";
-import { weatherConditions } from "../../../utils/WeatherConditions";
-import withGeolocation from '../withGeolocation'
+import {useOpenWeather} from '../../../models';
+import Loading from '../Loading/Loading';
+import Day from './Day';
+import styles from './styles';
+import {weatherConditions} from '../../../utils/WeatherConditions';
+import withGeolocation from '../withGeolocation';
 
 function Days(props): JSX.Element {
   const history = useHistory();
   const {latitude, longitude} = props.position.coords || {};
-  const { data, error, loading } = useOpenWeather(latitude, longitude);
+  const {data, error, loading} = useOpenWeather(latitude, longitude);
 
   if (loading) {
     return <Loading />;
@@ -22,7 +22,7 @@ function Days(props): JSX.Element {
   }
   const weatherCondition = data.weatherRes.list[0].weather[0].main;
   const days = data.weatherRes.list.filter((reading: any) =>
-    reading.dt_txt.includes("18:00:00")
+    reading.dt_txt.includes('18:00:00'),
   );
 
   const handleOnPress = () => {
@@ -35,7 +35,7 @@ function Days(props): JSX.Element {
         onPress={handleOnPress}
         style={[
           styles.button,
-          { backgroundColor: weatherConditions[weatherCondition].color },
+          {backgroundColor: weatherConditions[weatherCondition].color},
         ]}
       >
         {/*
@@ -50,7 +50,7 @@ function Days(props): JSX.Element {
       <View
         style={[
           styles.bodyContainer,
-          { backgroundColor: weatherConditions[weatherCondition].color },
+          {backgroundColor: weatherConditions[weatherCondition].color},
         ]}
       >
         {days.map((day) => (

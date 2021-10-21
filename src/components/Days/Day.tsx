@@ -1,15 +1,15 @@
-import React from "react";
-import { Text, View } from "react-native";
+import React from 'react';
+import {Text, View} from 'react-native';
 // import { MaterialCommunityIcons } from "@expo/vector-icons";
-import styles from "./styles";
+import styles from './styles';
 
-import { weatherConditions } from "../../../utils/WeatherConditions";
+import {weatherConditions} from '../../../utils/WeatherConditions';
 
-const DAYS_OF_THE_WEEK = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const DAYS_OF_THE_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 interface Props {
   day: {
-    clouds: { all: number };
+    clouds: {all: number};
     dt: number;
     dt_txt: string;
     main: {
@@ -35,7 +35,7 @@ interface Props {
 }
 
 const Day: React.FC<Props> = (props): JSX.Element => {
-  const { day, weatherCondition } = props;
+  const {day, weatherCondition} = props;
   const temperature = Math.round(day.main.temp);
   // @ts-ignore: 2532
   const weather = day.weather[0].main;
@@ -48,7 +48,7 @@ const Day: React.FC<Props> = (props): JSX.Element => {
     <View
       style={[
         styles.dayContainer,
-        { backgroundColor: weatherConditions[weatherCondition].color },
+        {backgroundColor: weatherConditions[weatherCondition].color},
       ]}
     >
       <Text style={styles.dayText}>{DAYS_OF_THE_WEEK[newDate.getDay()]}</Text>

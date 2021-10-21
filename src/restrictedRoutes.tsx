@@ -1,8 +1,8 @@
-import React from "react";
-import { Route } from "react-router-native";
+import React from 'react';
+import {Route} from 'react-router-native';
 
-import ApolloProviderWithClient from "./ApolloProviderWithClient";
-import { Days, Weather } from "./components";
+import ApolloProviderWithClient from './ApolloProviderWithClient';
+import {Days, Weather} from './components';
 
 export default function restrictedRoutes() {
   return (

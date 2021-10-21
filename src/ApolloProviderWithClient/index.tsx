@@ -1,9 +1,9 @@
-import React from "react";
-import Async from "react-async";
-import { ApolloProvider } from "@apollo/client";
+import React from 'react';
+import Async from 'react-async';
+import {ApolloProvider} from '@apollo/client';
 
-import createClient from "./createClient";
-import { CurrentUser } from "../../models";
+import createClient from './createClient';
+import {CurrentUser} from '../../models';
 
 export default function ApolloProviderWithClient(passthrough: any) {
   return (
@@ -16,7 +16,7 @@ export default function ApolloProviderWithClient(passthrough: any) {
       </Async.Fulfilled>
       <Async.Rejected>
         {(e) => {
-          console.log("RECHAZADO", e);
+          console.log('RECHAZADO', e);
         }}
       </Async.Rejected>
     </Async>
