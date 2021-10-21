@@ -14,3 +14,4 @@ web-report/
 .envrc
 .vim/coc-settings.json
 WeatherAPIKey.ts
+src/firebase/config.ts
