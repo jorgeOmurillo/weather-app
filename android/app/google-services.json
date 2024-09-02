@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1073538951431",
+    "firebase_url": "https://weather-app-169f1.firebaseio.com",
+    "project_id": "weather-app-169f1",
+    "storage_bucket": "weather-app-169f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073538951431:android:64955f5e859a8b92adfda2",
+        "android_client_info": {
+          "package_name": "com.reactnativefirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073538951431-cuk1uncqqcadg1vsk1unphp39o3rv6o8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDGOtGcgD4WPyQGBrxCbnvPC3CkYEugcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073538951431-cuk1uncqqcadg1vsk1unphp39o3rv6o8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1073538951431-bqc2gtkv1talq7grh1rfi2smhqucnr9o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.reactnativefirebase"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
