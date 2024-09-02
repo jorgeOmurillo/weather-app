@@ -1,4 +1,4 @@
-import { firebase } from "../src/firebase/config";
+import {firebase} from '../src/firebase/config';
 
 export const CurrentUser = {
   async get() {
@@ -6,6 +6,7 @@ export const CurrentUser = {
       try {
         firebase.auth().onAuthStateChanged((user: any) => resolve(user));
       } catch (e) {
+        console.log('un error ', e);
         reject(e);
       }
     });
@@ -18,10 +19,10 @@ export const CurrentUser = {
       .auth()
       .signOut()
       .then(() => {
-        alert("Logged out successfully!");
+        alert('Logged out successfully!');
       })
       .catch((error) => {
-        alert("Did not log out successfully.");
+        alert('Did not log out successfully.');
         console.error(error);
       });
   },
@@ -36,12 +37,12 @@ export const CurrentUser = {
           email,
           fullName,
         };
-        const usersRef = firebase.firestore().collection("users");
+        const usersRef = firebase.firestore().collection('users');
         usersRef
           .doc(uid)
           .set(data)
           .then(() => {
-            alert("Account successfully registered!");
+            alert('Account successfully registered!');
           })
           .catch((error) => {
             alert(error);

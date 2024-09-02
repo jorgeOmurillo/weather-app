@@ -16,3 +16,4 @@ web-report/
 WeatherAPIKey.ts
 src/firebase/config.ts
 node_modules
+vendor
