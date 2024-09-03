@@ -14,16 +14,15 @@ export const CurrentUser = {
   async login(email: string, password: string) {
     return auth().signInWithEmailAndPassword(email, password);
   },
-  logout() {
-    auth()
-      .signOut()
-      .then(() => {
-        alert('Logged out successfully!');
-      })
-      .catch((error) => {
-        alert('Did not log out successfully.');
-        console.error(error);
-      });
+  async logout() {
+    try {
+      await auth().signOut();
+
+      alert('Logged out successfully!');
+    } catch (error) {
+      alert('Did not log out successfully.');
+      console.error(error);
+    }
   },
   async register(fullName: string, email: string, password: string) {
     try {
