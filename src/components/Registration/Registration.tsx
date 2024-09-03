@@ -16,13 +16,13 @@ export default function Registration() {
     history.push('/login');
   };
 
-  const onRegisterPress = () => {
+  const onRegisterPress = async () => {
     if (password !== confirmPassword) {
       alert("Passwords don't match.");
       return;
     }
-    CurrentUser.register(fullName, email, password);
-    history.push('/login');
+    await CurrentUser.register(fullName, email, password);
+    history.push('/');
   };
 
   return (
@@ -31,8 +31,7 @@ export default function Registration() {
         style={{flex: 1, width: '100%'}}
         enableOnAndroid={true}
         keyboardShouldPersistTaps={'handled'}
-        enableResetScrollToCoords={false}
-      >
+        enableResetScrollToCoords={false}>
         <Image
           style={styles.logo}
           source={require('../../../assets/icon.png')}
@@ -77,8 +76,7 @@ export default function Registration() {
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={() => onRegisterPress()}
-        >
+          onPress={() => onRegisterPress()}>
           <Text style={styles.buttonTitle}>Create account</Text>
         </TouchableOpacity>
         <View style={styles.footerView}>

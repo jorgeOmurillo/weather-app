@@ -1,22 +1,21 @@
-import {firebase} from '../src/firebase/config';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 export const CurrentUser = {
   async get() {
     return new Promise((resolve, reject) => {
       try {
-        firebase.auth().onAuthStateChanged((user: any) => resolve(user));
+        auth().onAuthStateChanged((user: any) => resolve(user));
       } catch (e) {
-        console.log('un error ', e);
         reject(e);
       }
     });
   },
   async login(email: string, password: string) {
-    return firebase.auth().signInWithEmailAndPassword(email, password);
+    return auth().signInWithEmailAndPassword(email, password);
   },
   logout() {
-    firebase
-      .auth()
+    auth()
       .signOut()
       .then(() => {
         alert('Logged out successfully!');
@@ -26,31 +25,26 @@ export const CurrentUser = {
         console.error(error);
       });
   },
-  register(fullName: string, email: string, password: string) {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-        const uid = response.user.uid;
-        const data = {
-          id: uid,
-          email,
-          fullName,
-        };
-        const usersRef = firebase.firestore().collection('users');
-        usersRef
-          .doc(uid)
-          .set(data)
-          .then(() => {
-            alert('Account successfully registered!');
-          })
-          .catch((error) => {
-            alert(error);
-          });
-      })
-      .catch((error) => {
-        alert(error);
-      });
+  async register(fullName: string, email: string, password: string) {
+    try {
+      const result = await auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      );
+
+      const uid = result.user.uid;
+      const data = {
+        id: uid,
+        email,
+        fullName,
+      };
+      const usersRef = firestore().collection('users');
+
+      await usersRef.doc(uid).set(data);
+      alert('Account successfully registered!');
+    } catch (error) {
+      alert(error);
+    }
   },
 };
 

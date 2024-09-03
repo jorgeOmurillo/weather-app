@@ -1,4 +1,4 @@
-node_modules/**/*
+node_modules/
 .expo/*
 npm-debug.*
 *.jks
@@ -10,6 +10,11 @@ npm-debug.*
 web-build/
 web-report/
 .DS_Store
+xcuserdata/
+
+## Build generated
+build/
+DerivedData/
 
 .envrc
 .vim/coc-settings.json

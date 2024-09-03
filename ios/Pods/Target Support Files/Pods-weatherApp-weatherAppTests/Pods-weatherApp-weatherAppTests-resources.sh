@@ -97,18 +97,34 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore/FirebaseCore_Privacy.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/BoringSSL-GRPC/openssl_grpc.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreExtension/FirebaseCoreExtension_Privacy.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreInternal/FirebaseCoreInternal_Privacy.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestoreInternal/FirebaseFirestoreInternal_Privacy.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher/GTMSessionFetcher_Core_Privacy.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities/GoogleUtilities_Privacy.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises_Privacy.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/abseil/xcprivacy.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/grpcpp.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/gRPC-Core/grpc.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library/leveldb_Privacy.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore/FirebaseCore_Privacy.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/BoringSSL-GRPC/openssl_grpc.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreExtension/FirebaseCoreExtension_Privacy.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreInternal/FirebaseCoreInternal_Privacy.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestoreInternal/FirebaseFirestoreInternal_Privacy.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher/GTMSessionFetcher_Core_Privacy.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities/GoogleUtilities_Privacy.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises_Privacy.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/abseil/xcprivacy.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/grpcpp.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/gRPC-Core/grpc.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library/leveldb_Privacy.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
